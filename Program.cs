@@ -17,32 +17,26 @@ namespace Lab3
             while (repeat == true)
             {
                 Console.WriteLine("Please enter a positive integer!");
-                int Input = int.Parse(Console.ReadLine());
+                long Input = long.Parse(Console.ReadLine());
 
-                Console.Clear();
-                Console.SetCursorPosition(0, 0);
+                int Column = Console.CursorLeft;
+                int Line = Console.CursorTop;
+
+                Console.SetCursorPosition(Column, Line);
                 Console.Write("Number");
-                Console.SetCursorPosition(14, 0);
+                Console.SetCursorPosition(Column + 14, Line);
                 Console.Write("Squared");
-                Console.SetCursorPosition(30, 0);
+                Console.SetCursorPosition(Column + 30, Line);
                 Console.WriteLine("Cubed");
-                Console.SetCursorPosition(0, 1);
+                Console.SetCursorPosition(Column, Line + 1);
                 Console.Write("======");
-                Console.SetCursorPosition(14, 1);
+                Console.SetCursorPosition(Column + 14, Line + 1);
                 Console.Write("======");
-                Console.SetCursorPosition(30, 1);
+                Console.SetCursorPosition(Column + 30, Line + 1);
                 Console.WriteLine("======");
                 Console.WriteLine();
 
-                for (int i = 1; i <= Input; i++)
-                {
-                    Console.SetCursorPosition(0,i+2);
-                    Console.Write(i);
-                    Console.SetCursorPosition(14, i + 2);
-                    Console.Write(i*i);
-                    Console.SetCursorPosition(30, i + 2);
-                    Console.Write(i*i*i);
-                }
+                SquaresCubes(Input);
 
                 Console.WriteLine();
 
@@ -52,11 +46,37 @@ namespace Lab3
                 if (Again != "Y" && Again != "y")
                 {
                     repeat = false;
+                    Console.Clear();
                     Console.WriteLine("Goodbye!");
                 }
 
             }
 
+        }
+
+        public static void SquaresCubes(long Input)
+        {
+            for (int i = 1; i <= Input; i++)
+            {
+                int Column = Console.CursorLeft;
+                int Line = Console.CursorTop;
+                Console.SetCursorPosition(Column, Line);
+                Console.Write(i);
+                Console.SetCursorPosition(Column + 14, Line);
+                Console.Write(Squared(i));
+                Console.SetCursorPosition(Column + 30, Line);
+                Console.WriteLine(Cubed(i));
+            }
+        }
+
+        public static long Squared(long i)
+        {
+            return (i * i);
+        }
+
+        public static long Cubed(long i)
+        {
+            return (i * i * i);
         }
     }
 }
